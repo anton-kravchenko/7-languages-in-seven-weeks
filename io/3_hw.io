@@ -38,6 +38,7 @@ Builder html(
 squareBrackets := method(call message arguments)
 [1, 2, 3] println
 
+// Enhance the XML program to handle attributes
 OperatorTable addAssignOperator(":", "atAssignAttr")
 
 TheBuilder := Object clone do (
@@ -57,15 +58,16 @@ TheBuilder := Object clone do (
     ctx := call slotContext
 
     args := call message arguments
+    messageName := call message name
     attrs := ""
 
-    if (args size > 0 and args at (0) name == "curlyBrackets", attrs = doMessage(args removeFirst))
+    if (args first name == "curlyBrackets", attrs = doMessage(args removeFirst))
 
     if (ctx slotNames contains("_indent") == false, ctx _indent := 0, ctx _indent = ctx _indent + ctx tab_size)
     indent := ctx _indent
 
     tabulation := " " repeated(indent)
-    writeln(tabulation,  "<", call message name, attrs, ">")
+    writeln(tabulation,  "<", messageName, attrs, ">")
 
     args foreach(arg,
       content := self doMessage(arg)
@@ -73,7 +75,7 @@ TheBuilder := Object clone do (
     )
 
     ctx _indent = ctx _indent - ctx tab_size
-    writeln(" " repeated(indent), "</", call message name, ">")
+    writeln(" " repeated(indent), "</", messageName, ">")
   )
 )
 
