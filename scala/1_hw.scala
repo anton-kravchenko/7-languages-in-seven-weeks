@@ -33,9 +33,7 @@ class TikTakToeBoard(val board: Vector[String]) {
 
   }
 
-  def printBoard: Unit = {
-    getRows().map(row => println(row.mkString(" ")))
-  }
+  def printBoard: Unit = getRows().foreach(row => println(row.mkString(" ")))
 
   def getRows() = board.sliding(3, 3).toVector
 
@@ -46,5 +44,4 @@ class TikTakToeBoard(val board: Vector[String]) {
       ((0 to 9) by 4).map { board(_) },
       ((2 to 6) by 2).map { board(_) }
     )
-
 }

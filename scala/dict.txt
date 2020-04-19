@@ -1,0 +1,3 @@
+method, function
+write, implement
+trait, mixin
