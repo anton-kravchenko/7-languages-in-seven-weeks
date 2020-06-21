@@ -86,3 +86,6 @@ swapTupleItems l = [(y, x) | (x, y) <- l]
 -- Cartesian product
 computeCartesianProduct :: [String] -> [[String]]
 computeCartesianProduct lst = [[a, b] | a <- lst, b <- lst, a /= b]
+
+-- String represented as an array of characters
+-- "abc" == ['a', 'b', 'c'] --> True
